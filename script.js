@@ -44,7 +44,7 @@ function fillInputs(input) {
         })
     }
     else if (typeOfInput == "email") {
-        input.value = "random@email.com";
+        input.value = generateRandomEmail();
     } else if (typeOfInput == "number") {
         const min = Number.parseInt(input.min) || 8;
         const max = Number.parseInt(input.max) || 10;
@@ -75,4 +75,21 @@ function generateText(length, props = { lowerCase: true, upperCase: true, number
         retVal += charset.charAt(Math.floor(Math.random() * n));
     }
     return retVal;
+}
+
+function generateRandomEmail() {
+    const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+    let string = '';
+    for (var ii = 0; ii < 15; ii++) {
+        string += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    let smtp = '';
+    for (var ii = 0; ii < 15; ii++) {
+        smtp += alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+
+    return `${string}@${smtp}.com`
 }
