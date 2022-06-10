@@ -87,7 +87,7 @@ function generateRandomEmail() {
     }
 
     let smtp = '';
-    for (var ii = 0; ii < 15; ii++) {
+    for (var ii = 0; ii < 4; ii++) {
         smtp += alphabet[Math.floor(Math.random() * alphabet.length)];
     }
 
