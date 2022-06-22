@@ -14,3 +14,13 @@
 | file            | ❌            |
 
 ### Note that it fills the input fields by their types, so sometime the field may be marked as type text but it expects email and won't work.
+
+### To use it simply follow these steps
+
+1. Click on the three points in the upper right corner, find <strong>More tools</strong>, then <strong>Extensions</strong>.
+2. Make sure you enabled the developer mode
+3. Click <strong>Load unpacked</strong>
+4. Find the folder you just installed (the repo folder) and click on it.
+5. Click <strong>Select folder</strong>
+
+### The reason that I don't upload it to Chrome Store is because Google wants me to pay 5 USD as a developer fee, but I don't have money (#broke) 
