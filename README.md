@@ -23,4 +23,4 @@
 4. Find the folder you just installed (the repo folder) and click on it.
 5. Click <strong>Select folder</strong>
 
-### Works with React
+### 🧐 Works with React
