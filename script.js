@@ -97,7 +97,7 @@ class BasicFiller {
                 break;
             case "range":
                 const minRange = Number.parseInt(input.min) || 0;
-                const maxRange = Number.parseInt(input.min) || 1;
+                const maxRange = Number.parseInt(input.max) || 1;
                 const rangeValue = getRandomInt(minRange, maxRange);
                 input.value = rangeValue;
                 break;
