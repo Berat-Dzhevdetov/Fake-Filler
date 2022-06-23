@@ -10,6 +10,7 @@
 | password        | ✔             |
 | email           | ✔             |
 | number          | ✔             |
+| tel             | ✔             |
 | select          | ✔             |
 | checkbox        | ✔             |
 | date            | ✔             |
