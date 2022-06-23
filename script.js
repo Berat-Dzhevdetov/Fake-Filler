@@ -38,9 +38,8 @@ class BasicFiller {
         const maxLength = Number.parseInt(area.getAttribute("maxlength")) || 10;
 
         const length = Math.floor(Math.random() * (maxLength - minLength + 1) + minLength);
-        let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
 
-        area.value = generateText(length, props);
+        area.value = generateText(length, { numbers: false, specialSymbols: false });
     }
 
     fillInputs(input) {
@@ -64,15 +63,13 @@ class BasicFiller {
             const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
             input.value = randomNumber;
         } else {
-            let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
-            input.value = generateText(length, props);
+            input.value = generateText(length, { numbers: false, specialSymbols: false });
         }
     }
 }
 
-function generateText(length, props = { lowerCase: true, upperCase: true, numbers: true, specialSymbols: true }) {
+function generateText(length, { lowerCase = true, upperCase = true, numbers = true, specialSymbols = true }) {
     let charset = "";
-    const { lowerCase, upperCase, numbers, specialSymbols } = props;
     if (lowerCase) {
         charset += "abcdefghijklmnopqrstuvwxyz";
     }
