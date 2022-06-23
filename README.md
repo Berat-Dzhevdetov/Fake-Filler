@@ -11,7 +11,17 @@
 | email           | ✔             |
 | number          | ✔             |
 | select          | ✔             |
+| checkbox        | ✔             |
+| date            | ✔             |
+| datetime-local  | ✔             |
+| range           | ✔             |
+| time            | ✔             |
+| radio           | ✔             |
+| color           | ✔             |
 | file            | ❌            |
+| month           | ❌            |
+| week            | ❌            |
+| url             | ❌            |
 
 ### Note that it fills the input fields by their types, so sometime the field may be marked as type text but it expects email and won't work.
 
