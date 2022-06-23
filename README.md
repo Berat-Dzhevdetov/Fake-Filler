@@ -23,4 +23,4 @@
 4. Find the folder you just installed (the repo folder) and click on it.
 5. Click <strong>Select folder</strong>
 
-### The reason that I don't upload it to Chrome Store is because Google wants me to pay 5 USD as a developer fee, but I don't have money (#broke) 
+### Works with React
