@@ -1,55 +1,72 @@
 chrome.runtime.onMessage.addListener(gotMessage);
 
 function gotMessage(request, sender, sendResponse) {
+    const filler = new BasicFiller();
+
     const fields = [...document.querySelectorAll('input:not([type=submit])')];
-    fields.map(fillInputs)
+    fields.map(filler.fillInputs)
     const areas = [...document.querySelectorAll('textarea')];
-    areas.map(fillAreas);
+    areas.map(filler.fillAreas);
     const selects = [...document.querySelectorAll('select')];
-    selects.map(fillSelects);
+    selects.map(filler.fillSelects);
+
+    const reactFiller = new ReactFiller();
+    reactFiller.dispatch(fields);
+    reactFiller.dispatch(areas);
+    reactFiller.dispatch(selects);
 }
 
-function fillSelects(select) {
-    const min = 0;
-    const max = select.options.length - 1;
-    const optionIndex = Math.floor(Math.random() * (max - min + 1) + min);
-    select.value = select.options[optionIndex].value;
-}
-
-function fillAreas(area) {
-    const minLength = Number.parseInt(area.getAttribute("minlength")) || 8;
-    const maxLength = Number.parseInt(area.getAttribute("maxlength")) || 10;
-
-    const length = Math.floor(Math.random() * (maxLength - minLength + 1) + minLength);
-    let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
-
-    area.value = generateText(length, props);
-}
-
-function fillInputs(input) {
-    const typeOfInput = input.type;
-    const minLength = Number.parseInt(input.getAttribute("minlength")) || 8;
-    const maxLength = Number.parseInt(input.getAttribute("maxlength")) || 10;
-
-    const length = Math.floor(Math.random() * (maxLength - minLength + 1) + minLength);
-
-    if (typeOfInput == "text") {
-        let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
-        input.value = generateText(length, props);
-    }
-    else if (typeOfInput == "password") {
-        const password = generateText(length);
-        document.querySelectorAll('input[type=password]').forEach(el => {
-            el.value = password
+class ReactFiller {
+    dispatch(elements) {
+        const event = new Event('input', { bubbles: true });
+        elements.forEach(element => {
+            element.dispatchEvent(event);
         })
     }
-    else if (typeOfInput == "email") {
-        input.value = generateRandomEmail();
-    } else if (typeOfInput == "number") {
-        const min = Number.parseInt(input.min) || 8;
-        const max = Number.parseInt(input.max) || 10;
-        const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
-        input.value = randomNumber;
+}
+
+class BasicFiller {
+    fillSelects(select) {
+        const min = 0;
+        const max = select.options.length - 1;
+        const optionIndex = Math.floor(Math.random() * (max - min + 1) + min);
+        select.value = select.options[optionIndex].value;
+    }
+
+    fillAreas(area) {
+        const minLength = Number.parseInt(area.getAttribute("minlength")) || 8;
+        const maxLength = Number.parseInt(area.getAttribute("maxlength")) || 10;
+
+        const length = Math.floor(Math.random() * (maxLength - minLength + 1) + minLength);
+        let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
+
+        area.value = generateText(length, props);
+    }
+
+    fillInputs(input) {
+        const typeOfInput = input.type;
+        const minLength = Number.parseInt(input.getAttribute("minlength")) || 8;
+        const maxLength = Number.parseInt(input.getAttribute("maxlength")) || 10;
+
+        const length = Math.floor(Math.random() * (maxLength - minLength + 1) + minLength);
+
+        if (typeOfInput == "password") {
+            const password = this.generateText(length);
+            document.querySelectorAll('input[type=password]').forEach(el => {
+                el.value = password
+            })
+        }
+        else if (typeOfInput == "email") {
+            input.value = generateRandomEmail();
+        } else if (typeOfInput == "number") {
+            const min = Number.parseInt(input.min) || 8;
+            const max = Number.parseInt(input.max) || 10;
+            const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+            input.value = randomNumber;
+        } else {
+            let props = { lowerCase: true, upperCase: true, numbers: false, specialSymbols: false };
+            input.value = generateText(length, props);
+        }
     }
 }
 
