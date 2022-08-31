@@ -38,7 +38,7 @@ class BasicFiller {
         
         unique.forEach(element => {
             let current = radios.filter(x => x.getAttribute("name") == element);
-            let randomIndex = getRandomInt(0, current.length);
+            let randomIndex = getRandomInt(0, current.length - 1);
             current[randomIndex].checked = true;
         });
     }
